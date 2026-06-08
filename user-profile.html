@@ -175,41 +175,20 @@
 					<div class="col-lg-6 col-md-6">
 						<div class="widget personal-info">
 							<h3 class="widget-header user">Edit Personal Information</h3>
-							<form action="#">
-								<!-- First Name -->
+							<form id="profile-form">
 								<div class="form-group">
 									<label for="first-name">First Name</label>
-									<input type="text" class="form-control" id="first-name">
+									<input type="text" class="form-control" id="first-name" required>
 								</div>
-								<!-- Last Name -->
 								<div class="form-group">
 									<label for="last-name">Last Name</label>
-									<input type="text" class="form-control" id="last-name">
+									<input type="text" class="form-control" id="last-name" required>
 								</div>
-								<!-- File chooser -->
-								<div class="form-group choose-file d-inline-flex">
-									<i class="fa fa-user text-center px-3"></i>
-									<input type="file" class="form-control-file mt-2 pt-1" id="input-file">
-								 </div>
-								<!-- Comunity Name -->
 								<div class="form-group">
-									<label for="comunity-name">Comunity Name</label>
-									<input type="text" class="form-control" id="comunity-name">
+									<label for="phone-number">Phone Number</label>
+									<input type="text" class="form-control" id="phone-number" required>
 								</div>
-								<!-- Checkbox -->
-								<div class="form-check">
-								  <label class="form-check-label" for="hide-profile">
-									<input class="form-check-input mt-1" type="checkbox" value="" id="hide-profile">
-									Hide Profile from Public/Comunity
-								  </label>
-								</div>
-								<!-- Zip Code -->
-								<div class="form-group">
-									<label for="zip-code">Zip Code</label>
-									<input type="text" class="form-control" id="zip-code">
-								</div>
-								<!-- Submit button -->
-								<button class="btn btn-transparent">Save My Changes</button>
+								<button type="submit" class="btn btn-transparent">Save My Changes</button>
 							</form>
 						</div>
 					</div>
@@ -382,6 +361,56 @@ Essential Scripts
 <script src="plugins/google-map/map.js" defer></script>
 
 <script src="js/script.js"></script>
+
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBiuHztfnwJ8Xf-1uNls_iQXvMwBJv8POg",
+    authDomain: "support-94add.firebaseapp.com",
+    projectId: "support-94add",
+    storageBucket: "support-94add.firebasestorage.app",
+    messagingSenderId: "442252148032",
+    appId: "1:442252148032:web:4bd33e9f0e58a2b7368ea5"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  let currentUser = null;
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      currentUser = user;
+    } else {
+      window.location.href = "login.html";
+    }
+  });
+
+  document.getElementById("profile-form").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    if(!currentUser) return;
+
+    const firstName = document.getElementById("first-name").value;
+    const lastName = document.getElementById("last-name").value;
+    const phone = document.getElementById("phone-number").value;
+
+    try {
+      // ইউজারের নিজস্ব আইডিতে তথ্য সেভ করা হচ্ছে
+      await setDoc(doc(db, "users", currentUser.uid), {
+        firstName: firstName,
+        lastName: lastName,
+        phone: phone,
+        email: currentUser.email
+      });
+      alert("আপনার প্রোফাইল সফলভাবে আপডেট হয়েছে!");
+    } catch (e) {
+      alert("সমস্যা হয়েছে: " + e.message);
+    }
+  });
+</script>
 
 </body>
 
