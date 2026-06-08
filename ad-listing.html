@@ -138,8 +138,7 @@
 
 <section class="advt-post bg-gray py-5">
   <div class="container">
-    <form action="#!" method="POST">
-      <!-- Post Your ad start -->
+    <form id="ad-post-form" action="#!" method="POST">
       <fieldset class="border border-gary px-3 px-md-4 py-4 mb-5">
         <div class="row">
           <div class="col-lg-12">
@@ -147,7 +146,8 @@
           </div>
           <div class="col-lg-6">
             <h6 class="font-weight-bold pt-4 pb-1">Title Of Ad:</h6>
-            <input type="text" class="form-control bg-white" placeholder="Ad title go There" required>
+            <input type="text" id="ad-title" class="form-control bg-white" placeholder="Ad title go There" required>
+            
             <h6 class="font-weight-bold pt-4 pb-1">Ad Type:</h6>
             <div class="row px-3">
               <div class="col-lg-4 mr-lg-4 my-2 pt-2 pb-1 rounded bg-white">
@@ -159,29 +159,26 @@
                 <label for="business" class="py-2">Business</label>
               </div>
             </div>
+            
             <h6 class="font-weight-bold pt-4 pb-1">Description:</h6>
-            <textarea name="" id="" class="form-control bg-white" rows="7"
+            <textarea name="" id="ad-desc" class="form-control bg-white" rows="7"
               placeholder="Write details about your product" required></textarea>
           </div>
           <div class="col-lg-6">
             <h6 class="font-weight-bold pt-4 pb-1">Select Ad Category:</h6>
-            <select name="" class="form-control w-100 bg-white" id="inputGroupSelect">
+            <select name="" class="form-control w-100 bg-white" id="ad-category">
               <option value="1">Select category</option>
-              <option value="2">Laptops</option>
-              <option value="3">iphone</option>
-              <option value="4">microsoft</option>
-              <option value="5">monitors</option>
-              <option value="6">11inch Macbook Air</option>
-              <option value="7">Study Table Combo</option>
-              <option value="8">11inch Macbook Air</option>
-              <option value="9">Study Table Combo</option>
-              <option value="10">11inch Macbook Air</option>
+              <option value="Laptops">Laptops</option>
+              <option value="iphone">iphone</option>
+              <option value="microsoft">microsoft</option>
+              <option value="monitors">monitors</option>
             </select>
+            
             <div class="price">
               <h6 class="font-weight-bold pt-4 pb-1">Item Price ($ USD):</h6>
               <div class="row px-3">
                 <div class="col-lg-4 rounded my-2 px-0">
-                  <input type="text" name="price" class="form-control bg-white" placeholder="Price" id="price">
+                  <input type="text" name="price" class="form-control bg-white" placeholder="Price" id="ad-price" required>
                 </div>
                 <div class="col-lg-4 ml-lg-4 my-2 pt-2 pb-1 rounded bg-white ">
                   <input type="radio" name="itemName" value="Negotiable" id="Negotiable">
@@ -189,6 +186,7 @@
                 </div>
               </div>
             </div>
+            
             <div class="choose-file text-center my-4 py-4 rounded bg-white">
               <label for="file-upload">
                 <span class="d-block font-weight-bold text-dark">Drop files anywhere to upload</span>
@@ -201,9 +199,6 @@
           </div>
         </div>
       </fieldset>
-      <!-- Post Your ad end -->
-
-      <!-- seller-information start -->
       <fieldset class="border px-3 px-md-4 py-4 my-5 seller-information bg-gray">
         <div class="row">
           <div class="col-lg-12">
@@ -211,48 +206,37 @@
           </div>
           <div class="col-lg-6">
             <h6 class="font-weight-bold pt-4 pb-1">Contact Name:</h6>
-            <input type="text" placeholder="Contact name" class="form-control bg-white" required>
+            <input type="text" id="seller-name" placeholder="Contact name" class="form-control bg-white" required>
             <h6 class="font-weight-bold pt-4 pb-1">Contact Number:</h6>
-            <input type="text" placeholder="Contact Number" class="form-control bg-white" required>
+            <input type="text" id="seller-phone" placeholder="Contact Number" class="form-control bg-white" required>
           </div>
           <div class="col-lg-6">
-            <h6 class="font-weight-bold pt-4 pb-1">Contact Name:</h6>
+            <h6 class="font-weight-bold pt-4 pb-1">Contact Email:</h6>
             <input type="email" placeholder="name@yourmail.com" class="form-control bg-white" required>
-            <h6 class="font-weight-bold pt-4 pb-1">Contact Name:</h6>
+            <h6 class="font-weight-bold pt-4 pb-1">Contact Address:</h6>
             <input type="text" placeholder="Your address" class="form-control bg-white" required>
           </div>
         </div>
       </fieldset>
-      <!-- seller-information end-->
-
-      <!-- ad-feature start -->
       <fieldset class="border bg-white px-3 px-md-4 py-4 my-5 ad-feature bg-gray">
         <div class="row">
           <div class="col-lg-12">
-
             <h3 class="pb-3">Make Your Ad Featured
               <span class="float-right font-weight-normal text-success" data-toggle="tooltip" data-placement="top" title="Autem, architecto quisquam distinctio totam aut voluptatibus placeat ut nobis molestias rerum!">What is featured ad ?</span>
             </h3>
-
           </div>
           <div class="col-lg-6 my-3">
             <span class="mb-3 d-block">Premium Ad Options:</span>
             <ul>
               <li>
-                <input type="radio" id="regular-ad" name="adfeature">
+                <input type="radio" id="regular-ad" name="adfeature" checked>
                 <label for="regular-ad" class="font-weight-bold text-dark py-1">Regular Ad</label>
                 <span>$00.00</span>
               </li>
               <li>
                 <input type="radio" id="Featured-Ads" name="adfeature">
-                <label for="Featured-Ads" class="font-weight-bold text-dark py-1">Top Featured
-                  Ads</label>
+                <label for="Featured-Ads" class="font-weight-bold text-dark py-1">Top Featured Ads</label>
                 <span>$59.00</span>
-              </li>
-              <li>
-                <input type="radio" id="urgent-Ads" name="adfeature">
-                <label for="urgent-Ads" class="font-weight-bold text-dark py-1">Urgent Ads</label>
-                <span>$79.00</span>
               </li>
             </ul>
           </div>
@@ -260,34 +244,24 @@
             <span class="mb-3 d-block">Please select the preferred payment method:</span>
             <ul>
               <li>
-                <input type="radio" id="bank-transfer" name="adfeature">
-                <label for="bank-transfer" class="font-weight-bold text-dark py-1">Direct Bank
-                  Transfer</label>
+                <input type="radio" id="bank-transfer" name="paymentMethod">
+                <label for="bank-transfer" class="font-weight-bold text-dark py-1">Direct Bank Transfer</label>
               </li>
               <li>
-                <input type="radio" id="Cheque-Payment" name="adfeature">
-                <label for="Cheque-Payment" class="font-weight-bold text-dark py-1">Cheque
-                  Payment</label>
-              </li>
-              <li>
-                <input type="radio" id="Credit-Card" name="adfeature">
+                <input type="radio" id="Credit-Card" name="paymentMethod">
                 <label for="Credit-Card" class="font-weight-bold text-dark py-1">Credit Card</label>
               </li>
             </ul>
           </div>
         </div>
       </fieldset>
-      <!-- ad-feature start -->
-
-      <!-- submit button -->
       <div class="checkbox d-inline-flex">
-        <input type="checkbox" id="terms-&-condition" class="mt-1">
+        <input type="checkbox" id="terms-&-condition" class="mt-1" required>
         <label for="terms-&-condition" class="ml-2">By click you must agree with our
-          <span> <a class="text-success" href="terms-condition.html">Terms & Condition and Posting
-              Rules.</a></span>
+          <span> <a class="text-success" href="terms-condition.html">Terms & Condition and Posting Rules.</a></span>
         </label>
       </div>
-      <button type="submit" class="btn btn-primary d-block mt-2">Post Your Ad</button>
+      <button type="submit" id="submit-ad-btn" class="btn btn-primary d-block mt-2">Post Your Ad</button>
     </form>
   </div>
 </section>
@@ -409,6 +383,71 @@ Essential Scripts
 <script src="plugins/google-map/map.js" defer></script>
 
 <script src="js/script.js"></script>
+
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBiuHztfnwJ8Xf-1uNls_iQXvMwBJv8POg",
+    authDomain: "support-94add.firebaseapp.com",
+    projectId: "support-94add",
+    storageBucket: "support-94add.firebasestorage.app",
+    messagingSenderId: "442252148032",
+    appId: "1:442252148032:web:4bd33e9f0e58a2b7368ea5"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  let currentUser = null;
+
+  // চেক করা হচ্ছে ইউজার লগইন করা আছে কিনা
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      currentUser = user;
+    } else {
+      alert("বিজ্ঞাপন দিতে হলে আগে লগইন করতে হবে!");
+      window.location.href = "login.html";
+    }
+  });
+
+  // ফর্ম সাবমিট করার সময় রিলোড বন্ধ করে ডাটাবেসে সেভ করার নির্দেশ
+  document.getElementById("ad-post-form").addEventListener("submit", async function(event) {
+    event.preventDefault(); // এই লাইনটি পেজ রিলোড হতে দেয় না
+    
+    if(!currentUser) {
+       alert("দয়া করে লগইন করুন");
+       return;
+    }
+
+    // আপনার ডিজাইনের ইনপুট ফিল্ড থেকে তথ্য সংগ্রহ করা হচ্ছে
+    const title = document.getElementById("ad-title").value;
+    const desc = document.getElementById("ad-desc").value;
+    const category = document.getElementById("ad-category").value;
+    const price = document.getElementById("ad-price").value;
+    const sellerName = document.getElementById("seller-name").value;
+    const sellerPhone = document.getElementById("seller-phone").value;
+
+    try {
+      await addDoc(collection(db, "ads"), {
+        title: title,
+        description: desc,
+        category: category,
+        price: price,
+        sellerName: sellerName,
+        sellerPhone: sellerPhone,
+        userId: currentUser.uid,
+        date: new Date().toISOString()
+      });
+      alert("অভিনন্দন! আপনার বিজ্ঞাপনটি সফলভাবে ডাটাবেসে জমা হয়েছে!");
+      window.location.href = "ad-list-view.html"; // সেভ হওয়ার পর লিস্ট পেজে পাঠিয়ে দেবে
+    } catch (e) {
+      alert("দুঃখিত, সমস্যা হয়েছে: " + e.message);
+    }
+  });
+</script>
 
 </body>
 
