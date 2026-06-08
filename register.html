@@ -283,11 +283,9 @@ Essential Scripts
 <script src="js/script.js"></script>
 
   <script type="module">
-  // ফায়ারবেসের মূল টুলসগুলো নিয়ে আসা হচ্ছে
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
   import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
-  // আপনার ফায়ারবেস চাবি (Keys)
   const firebaseConfig = {
     apiKey: "AIzaSyBiuHztfnwJ8Xf-1uNls_iQXvMwBJv8POg",
     authDomain: "support-94add.firebaseapp.com",
@@ -297,28 +295,26 @@ Essential Scripts
     appId: "1:442252148032:web:4bd33e9f0e58a2b7368ea5"
   };
 
-  // ফায়ারবেস চালু করা হলো
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  // রেজিস্ট্রেশন বাটনে ক্লিক করলে যা হবে
   document.getElementById("register-btn").addEventListener("click", function(event) {
-    event.preventDefault(); // পেজ রিলোড হওয়া বন্ধ করে
+    event.preventDefault(); 
     
-    const email = document.querySelector('input[type="email"]').value;
-    const password = document.querySelectorAll('input[type="password"]')[0].value;
-    const confirmPassword = document.querySelectorAll('input[type="password"]')[1].value;
+    // ওই যে id দিয়েছিলাম, সেগুলো দিয়ে ডাটা টেনে আনা হচ্ছে
+    const email = document.getElementById("register-email").value;
+    const password = document.getElementById("register-password").value;
+    const confirmPassword = document.getElementById("register-confirm-password").value;
 
     if(password !== confirmPassword) {
         alert("পাসওয়ার্ড দুটি মিলছে না! আবার চেষ্টা করুন।");
         return;
     }
 
-    // নতুন একাউন্ট তৈরির নির্দেশ
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         alert("অভিনন্দন! আপনার একাউন্ট সফলভাবে তৈরি হয়েছে।");
-        window.location.href = "login.html"; // একাউন্ট হলে লগইন পেজে পাঠিয়ে দেবে
+        window.location.href = "login.html"; 
       })
       .catch((error) => {
         alert("দুঃখিত, কোনো সমস্যা হয়েছে: " + error.message);
