@@ -537,6 +537,41 @@ Essential Scripts
 
 <script src="js/script.js"></script>
 
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBiuHztfnwJ8Xf-1uNls_iQXvMwBJv8POg",
+    authDomain: "support-94add.firebaseapp.com",
+    projectId: "support-94add",
+    storageBucket: "support-94add.firebasestorage.app",
+    messagingSenderId: "442252148032",
+    appId: "1:442252148032:web:4bd33e9f0e58a2b7368ea5"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // সব সময় নজর রাখবে কেউ লগইন করা আছে কি না
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // ইউজার লগইন করা আছে, তাকে ড্যাশবোর্ড দেখতে দাও
+      console.log("Welcome", user.email);
+    } else {
+      // ইউজার নেই! তাকে সাথে সাথে লগইন পেজে বের করে দাও
+      window.location.href = "login.html"; 
+    }
+  });
+
+  // লগআউট বাটনের জন্য (যদি আপনার পেজে লগআউট বাটন থাকে)
+  // document.getElementById("logout-btn").addEventListener("click", () => {
+  //   signOut(auth).then(() => {
+  //     window.location.href = "index.html";
+  //   });
+  // });
+</script>
+
 </body>
 
 </html>
