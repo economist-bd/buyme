@@ -280,6 +280,40 @@ Essential Scripts
 
 <script src="js/script.js"></script>
 
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBiuHztfnwJ8Xf-1uNls_iQXvMwBJv8POg",
+    authDomain: "support-94add.firebaseapp.com",
+    projectId: "support-94add",
+    storageBucket: "support-94add.firebasestorage.app",
+    messagingSenderId: "442252148032",
+    appId: "1:442252148032:web:4bd33e9f0e58a2b7368ea5"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  document.getElementById("login-btn").addEventListener("click", function(event) {
+    event.preventDefault();
+    
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
+
+    // লগইন করার নির্দেশ
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        alert("লগইন সফল হয়েছে!");
+        window.location.href = "dashboard.html"; // লগইন হলে সরাসরি ড্যাশবোর্ডে নিয়ে যাবে
+      })
+      .catch((error) => {
+        alert("ইমেইল বা পাসওয়ার্ড ভুল হয়েছে।");
+      });
+  });
+</script>
+
 </body>
 
 </html>
